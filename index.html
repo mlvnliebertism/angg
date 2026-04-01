@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HBD Angga Irwansyah - Create By Melvin</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;800&family=Permanent+Marker&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --mc-sky: #00e5ff;
+            /* Cyan Neon */
+            --mc-navy: #0b0c10;
+            --red-accent: #ff0055;
+            /* Pink/Red Neon */
+            --gold: #FFD700;
+        }
+
+        body {
+            margin: 0;
+            overflow-x: hidden;
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--mc-navy);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* 1. Background Grid Bergerak */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background:
+                linear-gradient(rgba(11, 12, 16, 0.9), rgba(11, 12, 16, 0.9)),
+                repeating-linear-gradient(45deg, rgba(0, 229, 255, 0.05) 0px, rgba(0, 229, 255, 0.05) 2px, transparent 2px, transparent 50px),
+                repeating-linear-gradient(-45deg, rgba(255, 0, 85, 0.05) 0px, rgba(255, 0, 85, 0.05) 2px, transparent 2px, transparent 50px);
+            background-size: 100px 100px;
+            animation: moveGrid 20s linear infinite;
+        }
+
+        @keyframes moveGrid {
+            100% {
+                background-position: 100px 100px;
+            }
+        }
+
+        /* 2. Glass Card */
+        .main-card {
+            background: rgba(20, 20, 30, 0.8);
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(0, 229, 255, 0.2);
+            border-radius: 30px;
+            padding: 50px;
+            box-shadow: 0 0 50px rgba(0, 229, 255, 0.1);
+            max-width: 1000px;
+            width: 90%;
+            position: relative;
+            z-index: 10;
+            animation: popIn 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        @keyframes popIn {
+            0% {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* 3. Typography */
+        .title-hbd {
+            font-weight: 800;
+            font-size: clamp(3rem, 6vw, 5rem);
+            line-height: 0.9;
+            text-transform: uppercase;
+            color: white;
+            text-shadow: 4px 4px 0px var(--red-accent), -4px -4px 0px var(--mc-sky);
+            margin-bottom: 10px;
+        }
+
+        /* Animasi Neon Flicker pada Nama */
+        .name-script {
+            font-family: 'Permanent Marker', cursive;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            color: white;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px var(--mc-sky), 0 0 20px var(--mc-sky), 0 0 40px var(--mc-sky);
+        }
+
+        .flicker-active {
+            animation: flickerText 1.5s infinite alternate;
+        }
+
+        @keyframes flickerText {
+
+            0%,
+            18%,
+            22%,
+            25%,
+            53%,
+            57%,
+            100% {
+                text-shadow: 0 0 10px var(--mc-sky), 0 0 20px var(--mc-sky), 0 0 40px var(--mc-sky);
+                opacity: 1;
+            }
+
+            20%,
+            24%,
+            55% {
+                text-shadow: none;
+                opacity: 0.8;
+            }
+        }
+
+        /* 4. Photo Animation: Floating & Pulsing */
+        .photo-frame {
+            position: relative;
+            width: 280px;
+            height: 280px;
+            margin: 0 auto;
+            border-radius: 30px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            animation: floatUpDown 4s ease-in-out infinite;
+        }
+
+        .user-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 20px;
+            filter: grayscale(20%);
+            transition: filter 0.5s;
+        }
+
+        /* Saat tombol ditekan, gambar menyala dan berdetak */
+        .photo-frame.pulsing {
+            border-color: var(--red-accent);
+            animation: neonPulse 0.6s infinite alternate, floatUpDown 4s ease-in-out infinite;
+        }
+
+        .photo-frame.pulsing .user-photo {
+            filter: grayscale(0%);
+        }
+
+        @keyframes neonPulse {
+            0% {
+                box-shadow: 0 0 10px var(--red-accent);
+                transform: scale(1);
+            }
+
+            100% {
+                box-shadow: 0 0 40px var(--red-accent), 0 0 80px var(--red-accent);
+                transform: scale(1.05);
+            }
+        }
+
+        @keyframes floatUpDown {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        /* 5. Button */
+        .btn-party {
+            background: transparent;
+            color: var(--mc-sky);
+            border: 2px solid var(--mc-sky);
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            font-weight: 800;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(0, 229, 255, 0.4) inset;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .btn-party:hover,
+        .btn-party.active-btn {
+            background: var(--mc-sky);
+            color: var(--mc-navy);
+            box-shadow: 0 0 30px var(--mc-sky);
+            transform: scale(1.05);
+        }
+
+        /* Fireworks Confetti (Dari bawah ke atas) */
+        .firework {
+            position: fixed;
+            bottom: -20px;
+            z-index: 999;
+            pointer-events: none;
+            animation: shootUp cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+
+        @keyframes shootUp {
+            0% {
+                transform: translateY(0) scale(1) rotate(0deg);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-120vh) scale(0.5) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .title-hbd {
+                font-size: 3rem;
+            }
+
+            .photo-frame {
+                width: 220px;
+                height: 220px;
+                margin-bottom: 30px;
+            }
+
+            .main-card {
+                padding: 30px 20px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="animated-bg"></div>
+
+    <div id="player-container" style="position: absolute; top: -9999px; left: -9999px;"></div>
+
+    <div class="main-card">
+        <div class="row align-items-center flex-column-reverse flex-lg-row">
+
+            <div class="col-lg-7 text-center text-lg-start mt-4 mt-lg-0">
+                <div class="badge mb-3 px-3 py-2" style="background: var(--red-accent); letter-spacing: 2px;">V.I.P
+                    CELEBRATION</div>
+                <h1 class="title-hbd">HAPPY <br> BIRTHDAY</h1>
+                <div class="name-script" id="nameText">Angga Irwansyah</div>
+                <p class="text-white-50 fs-5 mb-4">
+                    "Selamat ulang tahun sang Juara! Semoga harimu penuh keajaiban, tawa, dan kemenangan. Gas terus!"
+                </p>
+
+                <button class="btn-party" id="playBtn" onclick="toggleParty()">
+                    <i class="fas fa-bolt me-2"></i> ROCK THE PARTY!
+                </button>
+            </div>
+
+            <div class="col-lg-5 text-center">
+                <div class="photo-frame" id="photoFrame">
+                    <img src="assets/img/angg.jpeg" alt="Angga Irwansyah" class="user-photo">
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script>
+        let player;
+        let isPlaying = false;
+        let confettiInterval;
+
+        // Link Lagu: Jamrud - Selamat Ulang Tahun
+        const videoID = 'raIHudGtd_Q';
+
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('player-container', {
+                height: '0',
+                width: '0',
+                videoId: videoID,
+                playerVars: {
+                    'playsinline': 1,
+                    'controls': 0,
+                    'disablekb': 1,
+                    'origin': window.location.origin
+                }
+            });
+        }
+
+        function toggleParty() {
+            const btn = document.getElementById('playBtn');
+            const photoFrame = document.getElementById('photoFrame');
+            const nameText = document.getElementById('nameText');
+
+            if (!isPlaying) {
+                // START ANIMATION & MUSIC
+                player.unMute();
+                player.setVolume(100);
+                player.playVideo();
+
+                btn.innerHTML = '<i class="fas fa-stop me-2"></i> PAUSE PARTY';
+                btn.classList.add('active-btn');
+
+                // Nyalakan efek Pulse & Flicker
+                photoFrame.classList.add('pulsing');
+                nameText.classList.add('flicker-active');
+
+                startFireworks();
+                isPlaying = true;
+            } else {
+                // STOP ANIMATION & MUSIC
+                player.pauseVideo();
+
+                btn.innerHTML = '<i class="fas fa-bolt me-2"></i> ROCK THE PARTY!';
+                btn.classList.remove('active-btn');
+
+                // Matikan efek Pulse & Flicker
+                photoFrame.classList.remove('pulsing');
+                nameText.classList.remove('flicker-active');
+
+                stopFireworks();
+                isPlaying = false;
+            }
+        }
+
+        // --- Logic Fireworks (Menembak dari bawah) ---
+        function startFireworks() {
+            confettiInterval = setInterval(() => {
+                const colors = ['#00e5ff', '#ff0055', '#FFD700', '#ffffff'];
+                const shapes = ['fas fa-star', 'fas fa-bolt', 'fas fa-fire', 'fas fa-music'];
+
+                const el = document.createElement('i');
+                const randomShape = shapes[Math.floor(Math.random() * shapes.length)];
+
+                el.className = `firework ${randomShape}`;
+                // Posisi awal acak dari sumbu X (kiri ke kanan)
+                el.style.left = Math.random() * 100 + 'vw';
+                el.style.color = colors[Math.floor(Math.random() * colors.length)];
+                el.style.fontSize = (Math.random() * 25 + 15) + 'px';
+
+                // Durasi terbang roket acak antara 1.5s sampai 3.5s
+                el.style.animationDuration = (Math.random() * 2 + 1.5) + 's';
+
+                document.body.appendChild(el);
+
+                // Hapus elemen setelah selesai terbang agar browser tidak berat
+                setTimeout(() => el.remove(), 4000);
+            }, 150); // Kecepatan keluarnya kembang api
+        }
+
+        function stopFireworks() {
+            clearInterval(confettiInterval);
+        }
+
+    </script>
+</body>
+
+</html>

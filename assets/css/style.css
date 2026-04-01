@@ -1,0 +1,94 @@
+/* --- Variables & Reset --- */
+:root {
+    --gold: #C5A059;
+    --dark: #0F0F0F;
+    --light: #F8F9FA;
+    --gold-hover: #A68545;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--dark);
+    overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+.navbar-brand {
+    font-family: 'Cinzel', serif;
+}
+
+/* --- Utilities --- */
+.text-gold {
+    color: var(--gold);
+}
+
+.ls-2 {
+    letter-spacing: 2px;
+}
+
+.ls-3 {
+    letter-spacing: 3px;
+}
+
+.py-100 {
+    padding: 100px 0;
+}
+
+.transition {
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+/* --- Navbar Luxury --- */
+.navbar {
+    padding: 25px 0;
+    z-index: 1000;
+}
+
+.navbar.scrolled {
+    background: white;
+    padding: 15px 0;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.navbar.scrolled .nav-link,
+.navbar.scrolled .navbar-brand {
+    color: var(--dark) !important;
+}
+
+.nav-link {
+    color: white !important;
+    font-weight: 500;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
+/* --- Hero Section --- */
+.hero-vignette {
+    height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+        url('https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1920');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+/* --- Buttons --- */
+.btn-gold {
+    background: var(--gold);
+    color: white;
+    border: none;
+    transition: 0.3s;
+}
+
+.btn-gold:hover {
+    background: var(--gold-hover);
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* --- Vehicle Cards --- */
+.vehicle-card:hover img {
+    transform: scale(1.1);
+}
